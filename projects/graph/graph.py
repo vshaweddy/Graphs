@@ -141,7 +141,7 @@ class Graph:
             if node == destination_vertex:
                 return path
 
-            # enumerate all neighbors, constuct a new path and push it to queue
+            # enumerate all neighbors, construct a new path and push it to queue
             for neighbor in self.vertices.get(node, set()):
                 # create a new path from the previous path
                 new_path = list(path)
@@ -175,7 +175,7 @@ class Graph:
             if node == destination_vertex:
                 return path
 
-            # enumerate all neighbors, constuct a new path and push it to queue
+            # enumerate all neighbors, construct a new path and push it to queue
             for neighbor in self.vertices.get(node, set()):
                 # create a new path from the previous path
                 new_path = list(path)
@@ -194,7 +194,41 @@ class Graph:
 
         This should be done using recursion.
         """
-        pass  # TODO
+
+        visited = set()
+
+        def helper(path):
+            # get the last vertice to check if it's the destination
+            node = path[-1]
+
+            if node in visited:
+                return None
+            
+            visited.add(node)
+
+            if node == destination_vertex:
+                return path
+
+            # enumerate all neighbors, construct a new path and push it to queue
+            for neighbor in self.vertices.get(node, set()):
+                # create a new path from the previous path
+                new_path = list(path)
+
+                # add the new node to the new path
+                new_path.append(neighbor)
+
+                found = helper(new_path)
+
+                if found:
+                    return found
+
+            return None
+
+        path = [starting_vertex]
+        return helper(path)
+
+            
+        
 
 if __name__ == '__main__':
     graph = Graph()  # Instantiate your graph
@@ -262,4 +296,4 @@ if __name__ == '__main__':
         [1, 2, 4, 7, 6]
     '''
     print(graph.dfs(1, 6))
-    # print(graph.dfs_recursive(1, 6))
+    print(graph.dfs_recursive(1, 6))
