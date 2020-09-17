@@ -45,7 +45,7 @@ class Graph:
         # while the queue is not empty
         while queue.size() > 0:
             curr = queue.dequeue()
-            
+
             # check if the current has been visited or not
             if curr in visited:
                 return
@@ -86,7 +86,33 @@ class Graph:
         starting_vertex to destination_vertex in
         breath-first order.
         """
-        pass  # TODO
+        # create a queue of paths
+        queue = Queue()
+
+        # add the starting to the queue but store it in a list
+        queue.enqueue([starting_vertex])
+
+        while queue.size() > 0:
+            # get the first path in queue
+            path = queue.dequeue()
+
+            # get the last vertice to check if it's the destination
+            node = path[-1]
+
+            if node == destination_vertex:
+                return path
+
+            # enumerate all neighbors, constuct a new path and push it to queue
+            for neighbor in self.vertices.get(node, set()):
+                # create a new path from the previous path
+                new_path = list(path)
+
+                # add the new node to the new path
+                new_path.append(neighbor)
+
+                # add the new path to the que
+                queue.enqueue(new_path)
+
 
     def dfs(self, starting_vertex, destination_vertex):
         """
@@ -164,7 +190,7 @@ if __name__ == '__main__':
     Valid BFS path:
         [1, 2, 4, 6]
     '''
-    # print(graph.bfs(1, 6))
+    print(graph.bfs(1, 6))
 
     '''
     Valid DFS paths:
