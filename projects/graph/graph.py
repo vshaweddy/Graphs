@@ -13,7 +13,7 @@ class Graph:
         """
         Add a vertex to the graph.
         """
-        return self.vertices[vertex_id] = set()
+        self.vertices[vertex_id] = set()
 
     def add_edge(self, v1, v2):
         """
@@ -22,19 +22,20 @@ class Graph:
         if v1 not in self.vertices or v2 not in self.vertices:
             raise Exception("It's not a vertice.")
 
-        return self.vertices[v1].add(v2)
+        self.vertices[v1].add(v2)
 
     def get_neighbors(self, vertex_id):
         """
         Get all neighbors (edges) of a vertex.
         """
-        self.vertice[vertex_id]
+        return self.vertice[vertex_id]
 
     def bft(self, starting_vertex):
         """
         Print each vertex in breadth-first order
         beginning from starting_vertex.
         """
+        #
         
 
     def dft(self, starting_vertex):
