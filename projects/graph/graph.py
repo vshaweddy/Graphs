@@ -28,14 +28,40 @@ class Graph:
         """
         Get all neighbors (edges) of a vertex.
         """
-        return self.vertice[vertex_id]
+        return self.vertices[vertex_id]
 
     def bft(self, starting_vertex):
         """
         Print each vertex in breadth-first order
         beginning from starting_vertex.
         """
-        #
+        # create an empty queue 
+        queue = Queue()
+        queue.enqueue(starting_vertex)
+        # create an empty set for the visited verticies
+        visited = set()
+
+
+        # while the queue is not empty
+        while queue.size() > 0:
+            curr = queue.dequeue()
+            
+            # check if the current has been visited or not
+            if curr in visited:
+                return
+
+            # print the current vertex
+            print(curr)
+
+            # add the current vertex to the visited set
+            visited.add(curr)
+
+            # change the current vertex to the current vertex's neighbor
+            neighbors = self.get_neighbors(curr)
+
+            # add all the neighbors to the queue
+            for neighbor in neighbors:
+                queue.enqueue(neighbor)
         
 
     def dft(self, starting_vertex):
@@ -122,7 +148,7 @@ if __name__ == '__main__':
         1, 2, 4, 3, 7, 6, 5
         1, 2, 4, 3, 7, 5, 6
     '''
-    # graph.bft(1)
+    graph.bft(1)
 
     '''
     Valid DFT paths:
