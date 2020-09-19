@@ -3,7 +3,7 @@ def earliest_ancestor(ancestors, starting_node):
     # initialize the empty dictionary
     graph = {}
 
-    # build the graph but in reverse way
+    # build the graph but in reverse way (switch the value to be the key)
     for (u, v) in ancestors:
         if v not in graph:
             # it needs to be a list so it will be in order
