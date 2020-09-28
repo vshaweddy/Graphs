@@ -135,7 +135,7 @@ class Graph:
             # get the first path in queue
             path = queue.dequeue()
 
-            # get the last vertice to check if it's the destination
+            # get the last vertex to check if it's the destination
             node = path[-1]
 
             if node == destination_vertex:
